@@ -7,6 +7,7 @@ const FeedbackForm = () => {
         name:'',
         email:'',
         feedback:'',
+        rating:'',
     });
 
     const handleChange = (event) => {
@@ -23,6 +24,7 @@ const FeedbackForm = () => {
         Name: ${formData.name}
         Email: ${formData.email}
         Feedback: ${formData.feedback}
+        Rating : ${formData.rating}
         `;
         const isConfirmed = window.confirm(`Please confirm your details:\n\n${confirmationMessage}`)
         if(isConfirmed){
@@ -30,7 +32,8 @@ const FeedbackForm = () => {
             setFormData({
                 name:'',
                 email: '',
-                feedback: ''
+                feedback: '',
+                rating:'',
             });
             alert('Thank you for your valuable feedback!')
         }
@@ -65,6 +68,22 @@ const FeedbackForm = () => {
             value={formData.feedback}
             onChange={handleChange}
         />
+        <div className='radio'>
+        <p>Rating : </p>
+        {[1, 2, 3, 4, 5].map((num) => (
+                <label key={num}>
+                <input
+                    type="radio"
+                    name="rating"
+                    value={num}
+                    checked={formData.rating === String(num)}
+                    onChange={handleChange}
+                />
+                {num}
+                </label>
+        ))}
+        </div>
+
         <button type="submit">Submit Feedback</button>
       </form>
     </>
